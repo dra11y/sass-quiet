@@ -3638,7 +3638,7 @@ self.fs = require("fs");
         dartPrint(string);
         return;
       }
-      if (typeof console == "object" && typeof console.log != "undefined") {
+      if (typeof console == "object" && typeof console.ger != "undefined") {
         console.log(string);
         return;
       }
@@ -42397,31 +42397,6 @@ self.fs = require("fs");
   };
   S.StderrLogger.prototype = {
     warn$4$deprecation$span$trace: function(_, message, deprecation, span, trace) {
-      var t2, t3, t4,
-        t1 = this.color;
-      if (t1) {
-        t2 = $.$get$stderr();
-        t3 = t2._stderr;
-        t4 = J.getInterceptor$x(t3);
-        t4.write$1(t3, "\x1b[33m\x1b[1m");
-        if (deprecation)
-          t4.write$1(t3, "Deprecation ");
-        t4.write$1(t3, "Warning\x1b[0m");
-      } else {
-        if (deprecation)
-          J.write$1$x($.$get$stderr()._stderr, "DEPRECATION ");
-        t2 = $.$get$stderr();
-        J.write$1$x(t2._stderr, "WARNING");
-      }
-      if (span == null)
-        t2.writeln$1(": " + message);
-      else if (trace != null)
-        t2.writeln$1(": " + message + "\n\n" + span.highlight$1$color(t1));
-      else
-        t2.writeln$1(" on " + span.message$2$color(0, "\n" + message, t1));
-      if (trace != null)
-        t2.writeln$1(B.indent(C.JSString_methods.trimRight$0(trace.toString$0(0)), 4));
-      t2.writeln$0();
     },
     warn$1: function($receiver, message) {
       return this.warn$4$deprecation$span$trace($receiver, message, false, null, null);
@@ -42461,17 +42436,6 @@ self.fs = require("fs");
   };
   Y.TerseLogger.prototype = {
     warn$4$deprecation$span$trace: function(_, message, deprecation, span, trace) {
-      var firstParagraph, t1, t2, count;
-      if (deprecation) {
-        firstParagraph = C.JSArray_methods.get$first(message.split("\n\n"));
-        t1 = this._warningCounts;
-        t2 = t1.$index(0, firstParagraph);
-        count = (t2 == null ? 0 : t2) + 1;
-        t1.$indexSet(0, firstParagraph, count);
-        if (count > 5)
-          return;
-      }
-      this._inner.warn$4$deprecation$span$trace(0, message, deprecation, span, trace);
     },
     warn$2$span: function($receiver, message, span) {
       return this.warn$4$deprecation$span$trace($receiver, message, false, span, null);
@@ -53906,14 +53870,6 @@ self.fs = require("fs");
       return this._async_evaluate$_stackTrace$1(null);
     },
     _async_evaluate$_warn$3$deprecation: function(message, span, deprecation) {
-      /*
-      var _this = this;
-      if (_this._async_evaluate$_quietDeps && _this._async_evaluate$_inDependency)
-        return;
-      if (!_this._async_evaluate$_warningsEmitted.add$1(0, new S.Tuple2(message, span, type$.Tuple2_String_SourceSpan)))
-        return;
-      _this._async_evaluate$_logger.warn$4$deprecation$span$trace(0, message, deprecation, span, _this._async_evaluate$_stackTrace$1(span));
-      */
     },
     _async_evaluate$_warn$2: function(message, span) {
       return this._async_evaluate$_warn$3$deprecation(message, span, false);
@@ -58837,14 +58793,6 @@ self.fs = require("fs");
       return this._evaluate$_stackTrace$1(null);
     },
     _warn$3$deprecation: function(message, span, deprecation) {
-      /*
-      var _this = this;
-      if (_this._quietDeps && _this._inDependency)
-        return;
-      if (!_this._warningsEmitted.add$1(0, new S.Tuple2(message, span, type$.Tuple2_String_SourceSpan)))
-        return;
-      _this._evaluate$_logger.warn$4$deprecation$span$trace(0, message, deprecation, span, _this._evaluate$_stackTrace$1(span));
-      */
     },
     _warn$2: function(message, span) {
       return this._warn$3$deprecation(message, span, false);
@@ -68775,12 +68723,6 @@ self.fs = require("fs");
       return this._async_evaluate0$_stackTrace$1(null);
     },
     _async_evaluate0$_warn$3$deprecation: function(message, span, deprecation) {
-      var _this = this;
-      if (_this._async_evaluate0$_quietDeps && _this._async_evaluate0$_inDependency)
-        return;
-      if (!_this._async_evaluate0$_warningsEmitted.add$1(0, new S.Tuple2(message, span, type$.Tuple2_String_SourceSpan)))
-        return;
-      _this._async_evaluate0$_logger.warn$4$deprecation$span$trace(0, message, deprecation, span, _this._async_evaluate0$_stackTrace$1(span));
     },
     _async_evaluate0$_warn$2: function(message, span) {
       return this._async_evaluate0$_warn$3$deprecation(message, span, false);
@@ -76334,12 +76276,6 @@ self.fs = require("fs");
       return this._evaluate0$_stackTrace$1(null);
     },
     _evaluate0$_warn$3$deprecation: function(message, span, deprecation) {
-      var _this = this;
-      if (_this._evaluate0$_quietDeps && _this._evaluate0$_inDependency)
-        return;
-      if (!_this._evaluate0$_warningsEmitted.add$1(0, new S.Tuple2(message, span, type$.Tuple2_String_SourceSpan)))
-        return;
-      _this._evaluate0$_logger.warn$4$deprecation$span$trace(0, message, deprecation, span, _this._evaluate0$_stackTrace$1(span));
     },
     _evaluate0$_warn$2: function(message, span) {
       return this._evaluate0$_warn$3$deprecation(message, span, false);
@@ -86942,23 +86878,6 @@ self.fs = require("fs");
   };
   S.StderrLogger0.prototype = {
     warn$4$deprecation$span$trace: function(_, message, deprecation, span, trace) {
-      var t1;
-      if (deprecation)
-        J.write$1$x($.$get$stderr0()._node1$_stderr, "DEPRECATION ");
-      J.write$1$x($.$get$stderr0()._node1$_stderr, "WARNING");
-      if (span == null) {
-        t1 = $.$get$stderr0();
-        t1.writeln$1(": " + message);
-      } else if (trace != null) {
-        t1 = $.$get$stderr0();
-        t1.writeln$1(": " + message + "\n\n" + span.highlight$1$color(false));
-      } else {
-        t1 = $.$get$stderr0();
-        t1.writeln$1(" on " + span.message$2$color(0, "\n" + message, false));
-      }
-      if (trace != null)
-        t1.writeln$1(B.indent0(C.JSString_methods.trimRight$0(trace.toString$0(0)), 4));
-      t1.writeln$0();
     },
     warn$1: function($receiver, message) {
       return this.warn$4$deprecation$span$trace($receiver, message, false, null, null);
@@ -90816,17 +90735,6 @@ self.fs = require("fs");
   };
   Y.TerseLogger0.prototype = {
     warn$4$deprecation$span$trace: function(_, message, deprecation, span, trace) {
-      var firstParagraph, t1, t2, count;
-      if (deprecation) {
-        firstParagraph = C.JSArray_methods.get$first(message.split("\n\n"));
-        t1 = this._terse$_warningCounts;
-        t2 = t1.$index(0, firstParagraph);
-        count = (t2 == null ? 0 : t2) + 1;
-        t1.$indexSet(0, firstParagraph, count);
-        if (count > 5)
-          return;
-      }
-      this._terse$_inner.warn$4$deprecation$span$trace(0, message, deprecation, span, trace);
     },
     warn$2$span: function($receiver, message, span) {
       return this.warn$4$deprecation$span$trace($receiver, message, false, span, null);
