@@ -1,5 +1,5 @@
 {
-    "name": "sass-quiet",
+    "name": "sass",
     "description": "A pure JavaScript implementation of Sass, sans deprecation warnings.",
     "license": "MIT",
     "bugs": "https://github.com/sass/dart-sass/issues",
